@@ -1,0 +1,37 @@
+{
+  "name": "@edenfamily/eden-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for Eden, the token launchpad on Elysium: market data, quotes, launches, curve and Uniswap v4 trades, fee claims, with every transaction verified before it is signed.",
+  "license": "MIT",
+  "author": "Eden <support@edenfamily.xyz> (https://edenfamily.xyz)",
+  "homepage": "https://github.com/EdenFamily/eden-sdk#readme",
+  "repository": { "type": "git", "url": "git+https://github.com/EdenFamily/eden-sdk.git" },
+  "bugs": { "url": "https://github.com/EdenFamily/eden-sdk/issues" },
+  "keywords": ["eden", "elysium", "hyperevm", "launchpad", "bonding-curve", "uniswap-v4", "viem", "sdk"],
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./abi/*.json": "./abi/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "src", "abi", "README.md", "LICENSE", "CHANGELOG.md"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "gen:abi": "node scripts/gen-abi.mjs",
+    "test": "node --experimental-strip-types --no-warnings=ExperimentalWarning --test test/unit/*.test.ts",
+    "test:e2e": "node --experimental-strip-types --no-warnings=ExperimentalWarning --test --test-concurrency=1 test/e2e/*.test.ts"
+  },
+  "dependencies": {
+    "viem": "^2.55.8"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.2",
+    "typescript": "5.9.3"
+  }
+}
